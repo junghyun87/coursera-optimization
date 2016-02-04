@@ -45,8 +45,8 @@ def solveIt(inputData):
             if i-weights[j-1]<0:
                 table[i][j]=table[i][j-1]
             else:
-                if table[i-weights[j-1]][j-1] + values[j-1] > table[i][j-1]:
-                    table[i][j]=table[i-weights[j-1]][j-1] + values[j-1]
+                if values[j-1]+table[i-weights[j-1]][j-1] > table[i][j-1]:
+                    table[i][j]=values[j-1] + table[i-weights[j-1]][j-1] 
                 else:
                     table[i][j]=table[i][j-1]
 
