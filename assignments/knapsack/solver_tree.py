@@ -27,7 +27,7 @@ class FindBest(object):
 		# set_trace()
 		if node.room < 0:
 			return
-		elif depth+1 == self.items:
+		elif depth == self.items:
 			#is the node best?
 			if self.bestNode == None:
 				self.bestNode = node
