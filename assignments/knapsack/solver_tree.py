@@ -1,3 +1,10 @@
+#put set_trace() wherever you want to look
+def set_trace():
+	from IPython.core.debugger import Pdb 
+	Pdb(color_scheme='Linux').set_trace(sys._getframe().f_back)
+
+
+
 class ItemNode(object):
 	def __init__(self,value,room,estimate,parent):
 		self.value = value;
@@ -17,6 +24,7 @@ class FindBest(object):
 
 
 	def treeBuilding(self, node, depth):
+		# set_trace()
 		if node.room < 0:
 			return
 		elif depth+1 == self.items:
