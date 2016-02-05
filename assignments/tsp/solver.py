@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import math
+import random
+
+#put set_trace() wherever you want to look
+def set_trace():
+    from IPython.core.debugger import Pdb 
+    Pdb(color_scheme='Linux').set_trace(sys._getframe().f_back)
+
 
 def length(point1, point2):
     return math.sqrt((point1[0] - point2[0])**2 + (point1[1] - point2[1])**2)
@@ -20,9 +27,23 @@ def solveIt(inputData):
         parts = line.split()
         points.append((float(parts[0]), float(parts[1])))
 
-    # build a trivial solution
-    # visit the nodes in the order they appear in the file
-    solution = range(0, nodeCount)
+    # build a greedy solution
+    # build a nearest neighbor solution
+    solution = []
+    startingNode = random.randint(0,nodeCount-1)
+    solution.append(startingNode)
+    while len(solution) != nodeCount:
+        minDistance = None
+        minNode = None
+        # set_trace()
+        lastPoint = points[solution[-1]]
+        for i in range(nodeCount):
+            if not i in solution:
+                distance=length(lastPoint,points[i])
+                if minDistance == None or distance < minDistance: 
+                    minNode = i
+                    minDistance = distance
+        solution.append(minNode)
 
     # calculate the length of the tour
     obj = length(points[solution[-1]], points[solution[0]])

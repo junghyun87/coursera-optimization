@@ -79,11 +79,13 @@ def solveIt(inputData):
     items = len(values)
 
     #Implementing Branch and Bound
+    print ('Branch and Bound')
     findBest = FindBest(values, weights, items, capacity)
     rootNode = ItemNode(0,capacity,sum(values),None)
     findBest.treeBuilding(rootNode,0)
     value=findBest.bestNode.value
 
+    print ('Identifing the selected items')
     #Identifing the selected items
     taken=findBest.getSelectedItems()
 
